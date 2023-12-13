@@ -1,0 +1,16 @@
+0a1,15
+> 
+> [program
+> [func-declaration
+> [void]
+> [main]
+> [params
+> [param
+> [int]
+> [argc]]]
+> [block
+> [print-stmt
+> [args
+> [var
+> [argc]]]]]]]
+> 

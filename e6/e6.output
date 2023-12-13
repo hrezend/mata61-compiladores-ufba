@@ -1,0 +1,136 @@
+Terminais sem uso na gramática
+
+    EOL
+
+
+Gramática
+
+    0 $accept: P $end
+
+    1 P: E
+
+    2 E: E ADD T
+    3  | T
+
+    4 T: ID LPAREN E RPAREN
+    5  | ID
+
+
+Terminais, com as regras onde eles aparecem
+
+    $end (0) 0
+    error (256)
+    ADD (258) 2
+    ID (259) 4 5
+    LPAREN (260) 4
+    RPAREN (261) 4
+    EOL (262)
+
+
+Não terminais com as regras onde eles aparecem
+
+    $accept (8)
+        à esquerda: 0
+    P (9)
+        à esquerda: 1
+        à direita: 0
+    E (10)
+        à esquerda: 2 3
+        à direita: 1 2 4
+    T (11)
+        à esquerda: 4 5
+        à direita: 2 3
+
+
+Estado 0
+
+    0 $accept: . P $end
+
+    ID  deslocar, e ir ao estado 1
+
+    P  ir ao estado 2
+    E  ir ao estado 3
+    T  ir ao estado 4
+
+
+Estado 1
+
+    4 T: ID . LPAREN E RPAREN
+    5  | ID .
+
+    LPAREN  deslocar, e ir ao estado 5
+
+    $padrão  reduzir usando a regra 5 (T)
+
+
+Estado 2
+
+    0 $accept: P . $end
+
+    $end  deslocar, e ir ao estado 6
+
+
+Estado 3
+
+    1 P: E .
+    2 E: E . ADD T
+
+    ADD  deslocar, e ir ao estado 7
+
+    $padrão  reduzir usando a regra 1 (P)
+
+
+Estado 4
+
+    3 E: T .
+
+    $padrão  reduzir usando a regra 3 (E)
+
+
+Estado 5
+
+    4 T: ID LPAREN . E RPAREN
+
+    ID  deslocar, e ir ao estado 1
+
+    E  ir ao estado 8
+    T  ir ao estado 4
+
+
+Estado 6
+
+    0 $accept: P $end .
+
+    $padrão  aceitar
+
+
+Estado 7
+
+    2 E: E ADD . T
+
+    ID  deslocar, e ir ao estado 1
+
+    T  ir ao estado 9
+
+
+Estado 8
+
+    2 E: E . ADD T
+    4 T: ID LPAREN E . RPAREN
+
+    ADD     deslocar, e ir ao estado 7
+    RPAREN  deslocar, e ir ao estado 10
+
+
+Estado 9
+
+    2 E: E ADD T .
+
+    $padrão  reduzir usando a regra 2 (E)
+
+
+Estado 10
+
+    4 T: ID LPAREN E RPAREN .
+
+    $padrão  reduzir usando a regra 4 (T)

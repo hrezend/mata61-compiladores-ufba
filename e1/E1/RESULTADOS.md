@@ -1,0 +1,2 @@
+Realmente foram notadas algumas diferenças entre as saídas quando comparamos a contagem feita pelo mywc.l e pelo wc do linux.
+Isso se dá devido a forma como o wc do linux foi implementado, considerando de forma diferente espaços e quebras de linha.
